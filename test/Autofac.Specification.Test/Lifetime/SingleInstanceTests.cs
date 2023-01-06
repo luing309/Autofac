@@ -16,7 +16,7 @@ public class SingleInstanceTests
     public void SingletonsCanBeRegisteredInNestedScope()
     {
         var containerBuilder = new ContainerBuilder();
-        var rootScope = containerBuilder.Build(ContainerBuildOptions.ExcludeDefaultModules);
+        var rootScope = containerBuilder.Build();
         var nestedScope = rootScope.BeginLifetimeScope(cb => cb.RegisterType<DisposeTracker>().SingleInstance());
 
         var dt = nestedScope.Resolve<DisposeTracker>();

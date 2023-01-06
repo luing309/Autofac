@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Autofac Project. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using Autofac.Builder;
 using Autofac.Specification.Test.Util;
 
 namespace Autofac.Specification.Test.Lifetime;
@@ -14,7 +15,8 @@ public class SingleInstanceTests
     [Fact]
     public void SingletonsCanBeRegisteredInNestedScope()
     {
-        var rootScope = new ContainerBuilder().Build();
+        var containerBuilder = new ContainerBuilder();
+        var rootScope = containerBuilder.Build(ContainerBuildOptions.ExcludeDefaultModules);
         var nestedScope = rootScope.BeginLifetimeScope(cb => cb.RegisterType<DisposeTracker>().SingleInstance());
 
         var dt = nestedScope.Resolve<DisposeTracker>();

@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Autofac.Builder;
+using Autofac.Core.Lifetime;
 using Autofac.Specification.Test.Util;
 
 namespace Autofac.Specification.Test.Lifetime;
@@ -18,7 +19,6 @@ public class SingleInstanceTests
         var containerBuilder = new ContainerBuilder();
         var rootScope = containerBuilder.Build();
         var nestedScope = rootScope.BeginLifetimeScope(cb => cb.RegisterType<DisposeTracker>().SingleInstance());
-
         var dt = nestedScope.Resolve<DisposeTracker>();
         var dt1 = nestedScope.Resolve<DisposeTracker>();
         Assert.Same(dt, dt1);
@@ -32,8 +32,10 @@ public class SingleInstanceTests
         var c = cb.Build();
         var a1 = c.Resolve<DisposeTracker>();
         var lifetime = c.BeginLifetimeScope();
-        lifetime.Resolve<DisposeTracker>();
+        var b1 = lifetime.Resolve<DisposeTracker>();
+        Assert.Same(a1, b1);
         lifetime.Dispose();
+        Assert.False(b1.IsDisposed);
         Assert.False(a1.IsDisposed);
         c.Dispose();
         Assert.True(a1.IsDisposed);

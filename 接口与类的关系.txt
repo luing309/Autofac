@@ -1,0 +1,13 @@
+接口
+IComponentContext => ILifetimeScope => ISharingLifetimeScope
+
+
+接口 类
+ISharingLifetimeScope => LifetimeScope
+
+
+Service
+Component
+
+
+Container ContainerBuilder 

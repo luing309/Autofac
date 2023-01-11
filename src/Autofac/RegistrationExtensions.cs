@@ -121,7 +121,6 @@ public static partial class RegistrationExtensions
         }
 
         var rb = RegistrationBuilder.ForType<TImplementer>();
-
         rb.RegistrationData.DeferredCallback = builder.RegisterCallback(cr => RegistrationBuilder.RegisterSingleComponent(cr, rb));
 
         return rb;

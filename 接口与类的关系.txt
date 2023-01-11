@@ -4,10 +4,13 @@ IComponentContext => ILifetimeScope => ISharingLifetimeScope
 
 接口 类
 ISharingLifetimeScope => LifetimeScope
+IRegistrationBuilder<> => RegistrationBuilder<>
 
 
-Service
-Component
+Container ContainerBuilder
+RegistrationBuilder静态类
 
+IComponentRegistration  IComponentRegistry（工厂）
+RegistrationBuilder  ComponentRegistration  ComponentRegistry
 
-Container ContainerBuilder 
+Container Component Service

@@ -7,7 +7,7 @@ ISharingLifetimeScope => LifetimeScope
 IRegistrationBuilder<> => RegistrationBuilder<>
 
 
-Container ContainerBuilder
+Container ContainerBuilder 工厂
 RegistrationBuilder静态类
 
 IComponentRegistration  IComponentRegistry（工厂）

@@ -77,7 +77,9 @@ public class TypeRegistrationTests
         Assert.NotNull(lifetime.Resolve<IB>());
 
         var allImplementationsOfServiceA = lifetime.Resolve<IEnumerable<IA>>();
+        var aa = lifetime.Resolve<IA>();
         Assert.Equal(2, allImplementationsOfServiceA.Count());
+        Assert.Equal(typeof(A), aa.GetType());
     }
 
     [Fact]
